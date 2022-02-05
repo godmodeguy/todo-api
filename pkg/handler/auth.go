@@ -9,5 +9,5 @@ func (h *Handler) singup(c *gin.Context) {
 }
 
 func (h *Handler) singin(c *gin.Context) {
-	
+
 }

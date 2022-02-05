@@ -5,7 +5,6 @@ import (
 )
 
 type Handler struct {
-
 }
 
 func NewHandler() Handler {
@@ -20,7 +19,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-in", h.singin)
 		auth.POST("/sign-up", h.singup)
 	}
-
 
 	api := r.Group("/api")
 	{

@@ -6,3 +6,7 @@ build:
 
 run:
 	go run cmd/main.go
+
+fmt:
+	go mod tidy
+	go fmt learn/todoapi/...
