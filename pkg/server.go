@@ -11,12 +11,13 @@ type Server struct {
 	httpServer *http.Server
 }
 
-func NewServer(port int) *Server {
+func NewServer(port int, handler http.Handler) *Server {
 	server := &http.Server{
-		Addr: fmt.Sprint(":", port),
+		Addr: 			fmt.Sprint(":", port),
+		Handler: 		handler,
 		MaxHeaderBytes: 1 << 20,
-		ReadTimeout: 5 * time.Second,
-		WriteTimeout: 5 * time.Second,
+		ReadTimeout: 	5 * time.Second,
+		WriteTimeout:	 5 * time.Second,
 	}
 
 	return &Server{server}
