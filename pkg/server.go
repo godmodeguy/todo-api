@@ -2,7 +2,6 @@ package todo
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"time"
 )
@@ -11,9 +10,9 @@ type Server struct {
 	httpServer *http.Server
 }
 
-func NewServer(port int, handler http.Handler) *Server {
+func NewServer(port string, handler http.Handler) *Server {
 	server := &http.Server{
-		Addr:           fmt.Sprint(":", port),
+		Addr:           ":" + port,
 		Handler:        handler,
 		MaxHeaderBytes: 1 << 20,
 		ReadTimeout:    5 * time.Second,
