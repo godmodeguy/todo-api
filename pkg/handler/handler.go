@@ -13,12 +13,12 @@ func NewHandler() Handler {
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
-	r := gin.Default()
+	r := gin.New()
 
 	auth := r.Group("/auth")
 	{
-		auth.POST("/sign-in")
-		auth.POST("/sign-up")
+		auth.POST("/sign-in", h.singin)
+		auth.POST("/sign-up", h.singup)
 	}
 
 
@@ -26,19 +26,19 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	{
 		lists := api.Group("/lists")
 		{
-			lists.POST("/")
-			lists.GET("/")
-			lists.GET("/:id")
-			lists.PUT("/:id")
-			lists.DELETE("/:id")
+			lists.POST("/", h.newList)
+			lists.GET("/", h.getLists)
+			lists.GET("/:id", h.getListById)
+			lists.PUT("/:id", h.updateList)
+			lists.DELETE("/:id", h.deleteList)
 
-			tasks := lists.Group("/")
+			tasks := lists.Group("/:id/item")
 			{
-				tasks.POST("/")
-				tasks.GET("/")
-				tasks.GET("/:task_id")
-				tasks.PUT("/:task_id")
-				tasks.DELETE("/:task_id")
+				tasks.POST("/", h.newTask)
+				tasks.GET("/", h.getTasks)
+				tasks.GET("/:task_id", h.getTaskById)
+				tasks.PUT("/:task_id", h.updateTask)
+				tasks.DELETE("/:task_id", h.deleteTask)
 			}
 		}
 	}
