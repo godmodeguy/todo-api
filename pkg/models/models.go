@@ -1,5 +1,7 @@
 package models
 
+import "gorm.io/gorm"
+
 type Authorization interface {
 }
 
@@ -15,6 +17,6 @@ type Repository struct {
 	Task
 }
 
-func NewRepository() *Repository {
+func NewRepository(db *gorm.DB) *Repository {
 	return &Repository{}
 }

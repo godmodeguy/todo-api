@@ -1,1 +1,8 @@
-port: "8090"
+host: 
+port: 8090
+
+db:
+  host: localhost
+  port: 5432
+  dbname: usr
+  user: usr
