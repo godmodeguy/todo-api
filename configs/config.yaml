@@ -6,3 +6,4 @@ db:
   port: 5432
   dbname: usr
   user: usr
+  sslmode: disable

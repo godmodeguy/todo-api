@@ -1,22 +1,35 @@
 package models
 
-import "gorm.io/gorm"
-
-type Authorization interface {
+type TodoList struct {
+	Id          int    `json:"id"`
+	Title       string `json:"title" binding:"required"`
+	Description string `json:"description"`
 }
 
-type TodoList interface {
+type User struct {
+	Id       int    `json:"id"       gorm:"primary key"`
+	Name     string `json:"name" 	 binding:"required"`
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
-type Task interface {
+type UserList struct {
+	Id     int
+	UserId int
+	ListId int
+	TypeId int
 }
 
-type Repository struct {
-	Authorization
-	TodoList
-	Task
+type LinkType struct {
+	Id   int
+	Type string
 }
 
-func NewRepository(db *gorm.DB) *Repository {
-	return &Repository{}
+type Task struct {
+	Id          int    `json:"id"`
+	ListId      int    `json:"list_id"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Status      bool   `json:"status"`
+	Priority    int    `json:"priority"`
 }
